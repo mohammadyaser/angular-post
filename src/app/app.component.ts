@@ -8,9 +8,5 @@ import { Post } from './posts/post.model';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  storedPost: Post[] = [];
-  onAddPost(post: Post) {
-    this.storedPost.push(post);
-  }
   title = 'trust';
 }
