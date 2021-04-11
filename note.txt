@@ -1,0 +1,8 @@
+1: برای ذخیره سازی اتوماتیک :
+  File > auto save
+2: برای ساخت یک کامپوننت در cli
+  ng g c dir/nameOfCompoent --module app --skip-tests
+3: غیر فعال کردن خطای مقدار اولیه برای متغییرها
+  "strictPropertyInitialization": false in  tsconfig.json
+
+

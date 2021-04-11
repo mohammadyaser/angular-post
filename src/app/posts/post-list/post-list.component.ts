@@ -11,18 +11,26 @@ import { MatExpansionPanel } from '@angular/material/expansion';
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
-  private postSub! : Subscription;
+  isLoading = false;
+  private postSub!: Subscription;
   constructor(public postService: PostService) {}
   ngOnInit() {
-    this.posts = this.postService.getPost();
-    console.log('nginiiiiiiiiiiit', this.posts);
-    this.postSub = this.postService.getPostUpdateListener().subscribe((posts: Post[]) => {
-      console.log("SUUUUUUUUUUUUUUUUB", posts)
-      this.posts = posts;
-    });
+    this.isLoading = true;
+    this.postService.getPosts();
+    this.postSub = this.postService
+      .getPostUpdateListener()
+      .subscribe((posts: Post[]) => {
+        this.isLoading = false;
+        this.posts = posts;
+      });
   }
 
-  ngOnDestroy(){
+
+  onDelete(postId) {
+    console.log(postId);
+    this.postService.deletePost(postId)
+  }
+  ngOnDestroy() {
     this.postSub.unsubscribe();
   }
 }
